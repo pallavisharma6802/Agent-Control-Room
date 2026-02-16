@@ -1,9 +1,14 @@
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
 from sqlmodel import SQLModel
+from dotenv import load_dotenv
+import os
+
+# Load environment variables
+load_dotenv()
 
 # Using the asyncpg driver for modern async PostgreSQL connections
-DATABASE_URL = "postgresql+asyncpg://user:pass@localhost/sentinel_db"
+DATABASE_URL = os.getenv("DATABASE_URL", "postgresql+asyncpg://user:pass@localhost/sentinel_db")
 
 # Creating async engine 
 engine = create_async_engine(DATABASE_URL, echo=True)
