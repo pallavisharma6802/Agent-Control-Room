@@ -1,0 +1,22 @@
+# Airflow Dockerfile
+FROM apache/airflow:2.9.0-python3.9
+
+# Switch to root to install packages
+USER root
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    gcc \
+    && rm -rf /var/lib/apt/lists/*
+
+# Switch back to airflow user
+USER airflow
+
+# Copy DAG files
+COPY airflow/dags/ ${AIRFLOW_HOME}/dags/
+
+# Copy Airflow configuration
+COPY airflow/airflow.cfg ${AIRFLOW_HOME}/airflow.cfg
+
+# Install additional Python packages if needed
+RUN pip install --no-cache-dir apache-airflow-providers-http==4.10.0
