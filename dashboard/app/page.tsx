@@ -98,7 +98,6 @@ export default function Dashboard() {
             title="Total Traces"
             value={stats?.total_traces ?? "-"}
             icon={<Database className="w-5 h-5" />}
-            trend="up"
           />
           <StatCard
             title="Hallucinations"
@@ -237,13 +236,11 @@ function StatCard({
   value,
   icon,
   variant = "default",
-  trend,
 }: {
   title: string
   value: string | number
   icon: React.ReactNode
   variant?: "default" | "success" | "danger"
-  trend?: "up" | "down"
 }) {
   const colors = {
     default: "border-slate-700 bg-slate-900/50",
