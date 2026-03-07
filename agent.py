@@ -1,32 +1,38 @@
 from google import genai
 from google.genai import types
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, Optional
 from datetime import datetime, timedelta
 from dateutil import parser
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.exc import IntegrityError
 import re
-import httpx
 from models import AgentTrace
 
 
 class GeminiService:
     """
-    Service for interacting with Gemini 3 Pro with Google Search grounding.
+    Service for interacting with Gemini 2.5 Pro with Google Search grounding.
     Extracts grounding metadata and detects stale knowledge.
     """
-    
-    def __init__(self, api_key: str, log_endpoint: str = "http://localhost:8000/log-trace"):
+
+    def __init__(self, api_key: str):
         self.client = genai.Client(api_key=api_key)
-        self.log_endpoint = log_endpoint
         self.stale_threshold_days = 180  # 6 months
     
-    async def get_grounded_response(self, prompt: str, session_id: str) -> Dict[str, Any]:
+    async def get_grounded_response(
+        self,
+        prompt: str,
+        session_id: str,
+        db: AsyncSession,
+    ) -> Dict[str, Any]:
         """
         Get a grounded response from Gemini and automatically log it.
-        
+
         Args:
             prompt: The user's question/prompt
             session_id: Unique session identifier
-            
+            db: Active database session for persisting the trace
+
         Returns:
             Dictionary with response text and metadata
         """
@@ -64,8 +70,8 @@ class GeminiService:
             detection_reason=detection_reason
         )
         
-        # Log to database
-        await self._log_trace(trace)
+        # Persist trace directly — no HTTP round-trip needed
+        await self._log_trace(trace, db)
         
         return {
             "response": response.text,
@@ -138,6 +144,9 @@ class GeminiService:
         5. Weak grounding (few sources for complex claims)
         6. Suspicious certainty markers
         7. Named system detection
+        8. Semantic mismatch (response content not reflected in grounding supports)
+        9. Ungrounded quantitative claims (specific numbers not in sources)
+        10. Recency mismatch (recent event claims with stale sources)
         
         Returns:
             tuple: (is_hallucinated, detection_reason)
@@ -216,6 +225,71 @@ class GeminiService:
             print(f"⚠️ Hallucination detected: Specific named system with {source_count} generic sources")
             return True, "named_system_detection"
         
+        # Check 8: Semantic mismatch - response content not reflected in grounding supports
+        # Extract key content words from response and check if they appear in support segments
+        if supports and len(response_text) > 100:
+            # Get all support segment texts
+            support_texts = ' '.join([s.get('segment_text', '') for s in supports if s.get('segment_text')])
+            
+            # Extract meaningful words from response (exclude common words)
+            response_words = set(re.findall(r'\b[A-Z][a-z]{3,}\b|\b[a-z]{5,}\b', response_text))
+            stopwords = {'with', 'from', 'this', 'that', 'have', 'been', 'their', 'which', 'would', 'could', 'should'}
+            response_words = response_words - stopwords
+            
+            if len(response_words) > 10:
+                # Check what percentage of key words appear in support texts
+                words_in_support = sum(1 for word in response_words if word.lower() in support_texts.lower())
+                overlap_ratio = words_in_support / len(response_words)
+                
+                # If less than 30% overlap, likely hallucinating details
+                if overlap_ratio < 0.3 and len(response_text) > 200:
+                    print(f"⚠️ Hallucination detected: Low semantic overlap ({overlap_ratio:.1%}) between response and grounding supports")
+                    return True, "semantic_mismatch"
+        
+        # Check 9: Ungrounded quantitative claims - specific numbers not in sources
+        # Extract all numbers from response
+        numbers_in_response = re.findall(r'\b\d+(?:\.\d+)?%?|\b\d{4}\b', response_text)  # numbers, percentages, years
+        
+        if numbers_in_response and supports:
+            support_texts = ' '.join([s.get('segment_text', '') for s in supports if s.get('segment_text')])
+            
+            # Check if numbers appear in support texts
+            ungrounded_numbers = [num for num in numbers_in_response if num not in support_texts]
+            
+            # If response has 3+ specific numbers and more than half are not in sources
+            if len(numbers_in_response) >= 3 and len(ungrounded_numbers) / len(numbers_in_response) > 0.5:
+                print(f"⚠️ Hallucination detected: {len(ungrounded_numbers)}/{len(numbers_in_response)} quantitative claims not found in sources: {ungrounded_numbers[:3]}")
+                return True, "ungrounded_quantitative_claim"
+        
+        # Check 10: Recency mismatch - recent event claims with stale sources
+        # Detect temporal markers suggesting recent events
+        recent_markers = ['yesterday', 'today', 'this week', 'this month', 'recently', 'just announced', 
+                         'breaking', 'latest', 'current', 'now', 'as of', '2026', '2025']
+        
+        has_recency_claim = any(marker in response_text.lower() for marker in recent_markers)
+        
+        if has_recency_claim and chunks:
+            # Check if we have date information from sources
+            current_date = datetime.now()
+            threshold_date = current_date - timedelta(days=90)  # 3 months ago
+            
+            # Try to extract dates from source URIs/titles
+            source_dates = []
+            for chunk in chunks:
+                date_found = self._extract_date_from_source(
+                    chunk.get('uri', ''), 
+                    chunk.get('title', '')
+                )
+                if date_found:
+                    source_dates.append(date_found)
+            
+            # If we have date info and all sources are old (>3 months)
+            if source_dates and all(date < threshold_date for date in source_dates):
+                oldest = min(source_dates)
+                days_old = (current_date - oldest).days
+                print(f"⚠️ Hallucination detected: Recent event claim but oldest source is {days_old} days old")
+                return True, "recency_mismatch"
+        
         return False, None
     
     def _calculate_confidence_score(self, grounding_metadata: Dict[str, Any]) -> float:
@@ -290,18 +364,17 @@ class GeminiService:
         
         return None
     
-    async def _log_trace(self, trace: AgentTrace):
+    async def _log_trace(self, trace: AgentTrace, db: AsyncSession) -> None:
         """
-        Send the trace to the log endpoint.
+        Persist the trace directly to the database.
+        Duplicate responses (same md5 hash) are ignored gracefully.
         """
         try:
-            async with httpx.AsyncClient(timeout=30.0) as client:
-                # Exclude id and use json mode for proper datetime serialization
-                trace_dict = trace.model_dump(mode='json', exclude={'id'})
-                response = await client.post(
-                    self.log_endpoint,
-                    json=trace_dict
-                )
-                response.raise_for_status()
+            db.add(trace)
+            await db.commit()
+            await db.refresh(trace)
+        except IntegrityError:
+            await db.rollback()  # duplicate — silently ignore
         except Exception as e:
+            await db.rollback()
             print(f"Failed to log trace: {e}")
