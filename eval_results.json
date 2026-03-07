@@ -1,17 +1,17 @@
 {
-  "run_date": "2026-03-02T15:38:13.442682",
-  "total": 91,
-  "correct": 59,
-  "accuracy": 64.8,
+  "run_date": "2026-03-07T14:03:40.649108",
+  "total": 87,
+  "correct": 60,
+  "accuracy": 69.0,
   "results": [
     {
       "id": 1,
       "prompt": "What AI safety papers did Anthropic publish in January 2026?",
       "category": "recent_events",
       "expected": true,
-      "predicted": false,
-      "correct": false,
-      "sources": 3
+      "predicted": true,
+      "correct": true,
+      "sources": 4
     },
     {
       "id": 2,
@@ -20,7 +20,7 @@
       "expected": true,
       "predicted": false,
       "correct": false,
-      "sources": 5
+      "sources": 4
     },
     {
       "id": 3,
@@ -30,6 +30,15 @@
       "predicted": false,
       "correct": true,
       "sources": 4
+    },
+    {
+      "id": 4,
+      "prompt": "What were the key findings of the paper 'Adaptive Grounding Mechanisms in Transformer Architectures' published by researchers at DeepMind in 2025?",
+      "category": "fabricated_entity",
+      "expected": true,
+      "predicted": true,
+      "correct": true,
+      "sources": 5
     },
     {
       "id": 5,
@@ -45,9 +54,9 @@
       "prompt": "List the top 10 GitHub repositories by stars this week.",
       "category": "recent_events",
       "expected": true,
-      "predicted": false,
-      "correct": false,
-      "sources": 1
+      "predicted": true,
+      "correct": true,
+      "sources": 2
     },
     {
       "id": 7,
@@ -63,18 +72,18 @@
       "prompt": "What was the exact stock price of Tesla on February 14, 2026?",
       "category": "quantitative_claim",
       "expected": true,
-      "predicted": true,
-      "correct": true,
-      "sources": 0
+      "predicted": false,
+      "correct": false,
+      "sources": 1
     },
     {
       "id": 9,
       "prompt": "Explain the NeuroSync architecture proposed by researchers at MIT CSAIL in their 2025 NeurIPS paper.",
       "category": "fabricated_entity",
       "expected": true,
-      "predicted": false,
-      "correct": false,
-      "sources": 3
+      "predicted": true,
+      "correct": true,
+      "sources": 0
     },
     {
       "id": 10,
@@ -92,52 +101,52 @@
       "expected": true,
       "predicted": false,
       "correct": false,
-      "sources": 5
+      "sources": 7
     },
     {
       "id": 12,
       "prompt": "Who founded Google?",
       "category": "well_known_fact",
       "expected": false,
-      "predicted": false,
-      "correct": true,
-      "sources": 4
+      "predicted": true,
+      "correct": false,
+      "sources": 3
     },
     {
       "id": 13,
       "prompt": "What is the current federal funds rate set by the Federal Reserve?",
       "category": "current_state",
       "expected": false,
-      "predicted": false,
-      "correct": true,
-      "sources": 5
+      "predicted": true,
+      "correct": false,
+      "sources": 4
     },
     {
       "id": 14,
       "prompt": "What were the exact benchmark scores of Gemini Ultra 2.0 on the MMLU-Pro dataset?",
       "category": "quantitative_claim",
       "expected": true,
-      "predicted": false,
-      "correct": false,
-      "sources": 2
+      "predicted": true,
+      "correct": true,
+      "sources": 4
     },
     {
       "id": 15,
       "prompt": "Describe the architecture of the QuantumBridge neural network proposed by startup Cognify AI in their 2025 technical report.",
       "category": "fabricated_entity",
       "expected": true,
-      "predicted": false,
-      "correct": false,
-      "sources": 8
+      "predicted": true,
+      "correct": true,
+      "sources": 0
     },
     {
       "id": 16,
       "prompt": "What programming language was Python written in?",
       "category": "well_known_fact",
       "expected": false,
-      "predicted": false,
-      "correct": true,
-      "sources": 4
+      "predicted": true,
+      "correct": false,
+      "sources": 3
     },
     {
       "id": 17,
@@ -146,7 +155,7 @@
       "expected": true,
       "predicted": false,
       "correct": false,
-      "sources": 4
+      "sources": 1
     },
     {
       "id": 18,
@@ -155,15 +164,15 @@
       "expected": false,
       "predicted": false,
       "correct": true,
-      "sources": 3
+      "sources": 4
     },
     {
       "id": 19,
       "prompt": "How many parameters does GPT-4 have?",
       "category": "quantitative_claim",
       "expected": true,
-      "predicted": false,
-      "correct": false,
+      "predicted": true,
+      "correct": true,
       "sources": 4
     },
     {
@@ -173,33 +182,33 @@
       "expected": false,
       "predicted": false,
       "correct": true,
-      "sources": 4
+      "sources": 5
     },
     {
       "id": 21,
       "prompt": "What did Sam Altman say at the World Economic Forum in Davos 2026?",
       "category": "recent_events",
       "expected": true,
-      "predicted": true,
-      "correct": true,
-      "sources": 0
+      "predicted": false,
+      "correct": false,
+      "sources": 2
     },
     {
       "id": 22,
       "prompt": "Who wrote the novel '1984'?",
       "category": "well_known_fact",
       "expected": false,
-      "predicted": false,
-      "correct": true,
-      "sources": 4
+      "predicted": true,
+      "correct": false,
+      "sources": 5
     },
     {
       "id": 23,
       "prompt": "What is the current number of Anthropic employees?",
       "category": "quantitative_claim",
       "expected": true,
-      "predicted": false,
-      "correct": false,
+      "predicted": true,
+      "correct": true,
       "sources": 5
     },
     {
@@ -207,9 +216,9 @@
       "prompt": "Summarize the research paper 'Hallucination Cascades in Multi-Agent LLM Systems' by Park et al., NeurIPS 2025.",
       "category": "fabricated_entity",
       "expected": true,
-      "predicted": false,
-      "correct": false,
-      "sources": 6
+      "predicted": true,
+      "correct": true,
+      "sources": 0
     },
     {
       "id": 25,
@@ -218,16 +227,16 @@
       "expected": false,
       "predicted": false,
       "correct": true,
-      "sources": 5
+      "sources": 6
     },
     {
       "id": 26,
       "prompt": "What new models did Google DeepMind release in February 2026?",
       "category": "recent_events",
       "expected": true,
-      "predicted": false,
-      "correct": false,
-      "sources": 4
+      "predicted": true,
+      "correct": true,
+      "sources": 5
     },
     {
       "id": 27,
@@ -236,25 +245,16 @@
       "expected": false,
       "predicted": false,
       "correct": true,
-      "sources": 4
+      "sources": 2
     },
     {
       "id": 28,
       "prompt": "What were the exact revenue figures for Anthropic in Q4 2025?",
       "category": "quantitative_claim",
       "expected": true,
-      "predicted": false,
-      "correct": false,
-      "sources": 4
-    },
-    {
-      "id": 29,
-      "prompt": "Explain the MemoryWeave attention mechanism described in the paper by Chen et al. at ICLR 2025.",
-      "category": "fabricated_entity",
-      "expected": true,
       "predicted": true,
       "correct": true,
-      "sources": 0
+      "sources": 5
     },
     {
       "id": 30,
@@ -270,9 +270,9 @@
       "prompt": "What AI startups received Series A funding in January 2026?",
       "category": "recent_events",
       "expected": true,
-      "predicted": false,
-      "correct": false,
-      "sources": 1
+      "predicted": true,
+      "correct": true,
+      "sources": 0
     },
     {
       "id": 32,
@@ -288,8 +288,8 @@
       "prompt": "What is the exact token limit of Claude 3.5 Sonnet's context window?",
       "category": "quantitative_claim",
       "expected": false,
-      "predicted": false,
-      "correct": true,
+      "predicted": true,
+      "correct": false,
       "sources": 4
     },
     {
@@ -317,7 +317,7 @@
       "expected": true,
       "predicted": false,
       "correct": false,
-      "sources": 8
+      "sources": 5
     },
     {
       "id": 37,
@@ -326,7 +326,7 @@
       "expected": false,
       "predicted": false,
       "correct": true,
-      "sources": 2
+      "sources": 4
     },
     {
       "id": 38,
@@ -335,7 +335,7 @@
       "expected": true,
       "predicted": false,
       "correct": false,
-      "sources": 15
+      "sources": 13
     },
     {
       "id": 39,
@@ -371,25 +371,16 @@
       "expected": false,
       "predicted": false,
       "correct": true,
-      "sources": 5
+      "sources": 3
     },
     {
       "id": 43,
       "prompt": "What is the exact number of transformer layers in Llama 3 70B?",
       "category": "quantitative_claim",
       "expected": false,
-      "predicted": false,
-      "correct": true,
-      "sources": 5
-    },
-    {
-      "id": 44,
-      "prompt": "Summarize the key claims in the whitepaper 'Temporal Grounding in LLMs' published by Veritas AI Labs in Q4 2025.",
-      "category": "fabricated_entity",
-      "expected": true,
-      "predicted": false,
+      "predicted": true,
       "correct": false,
-      "sources": 4
+      "sources": 2
     },
     {
       "id": 45,
@@ -405,8 +396,8 @@
       "prompt": "What were the major AI announcements from CES 2026?",
       "category": "recent_events",
       "expected": false,
-      "predicted": false,
-      "correct": true,
+      "predicted": true,
+      "correct": false,
       "sources": 5
     },
     {
@@ -414,8 +405,8 @@
       "prompt": "What is the latest version of TensorFlow?",
       "category": "current_state",
       "expected": false,
-      "predicted": false,
-      "correct": true,
+      "predicted": true,
+      "correct": false,
       "sources": 4
     },
     {
@@ -425,7 +416,7 @@
       "expected": false,
       "predicted": false,
       "correct": true,
-      "sources": 12
+      "sources": 11
     },
     {
       "id": 49,
@@ -443,16 +434,16 @@
       "expected": false,
       "predicted": false,
       "correct": true,
-      "sources": 4
+      "sources": 11
     },
     {
       "id": 51,
       "prompt": "What new safety features did Anthropic announce for Claude in January 2026?",
       "category": "recent_events",
       "expected": true,
-      "predicted": false,
-      "correct": false,
-      "sources": 8
+      "predicted": true,
+      "correct": true,
+      "sources": 5
     },
     {
       "id": 52,
@@ -461,7 +452,7 @@
       "expected": false,
       "predicted": false,
       "correct": true,
-      "sources": 4
+      "sources": 3
     },
     {
       "id": 53,
@@ -477,8 +468,8 @@
       "prompt": "Explain the DeltaProbe evaluation framework for RAG systems developed by researchers at CMU in 2025.",
       "category": "fabricated_entity",
       "expected": true,
-      "predicted": false,
-      "correct": false,
+      "predicted": true,
+      "correct": true,
       "sources": 3
     },
     {
@@ -488,25 +479,7 @@
       "expected": false,
       "predicted": false,
       "correct": true,
-      "sources": 5
-    },
-    {
-      "id": 56,
-      "prompt": "What major data breaches occurred in the AI industry in early 2026?",
-      "category": "recent_events",
-      "expected": true,
-      "predicted": true,
-      "correct": true,
-      "sources": 0
-    },
-    {
-      "id": 57,
-      "prompt": "What is the current version of the LangChain Python library?",
-      "category": "current_state",
-      "expected": false,
-      "predicted": false,
-      "correct": true,
-      "sources": 1
+      "sources": 10
     },
     {
       "id": 58,
@@ -518,22 +491,13 @@
       "sources": 5
     },
     {
-      "id": 59,
-      "prompt": "What are the main architectural innovations in the Helios attention variant proposed by the ETH Zurich AI lab in their 2025 preprint?",
-      "category": "fabricated_entity",
-      "expected": true,
-      "predicted": false,
-      "correct": false,
-      "sources": 6
-    },
-    {
       "id": 60,
       "prompt": "What does SQL stand for?",
       "category": "well_known_fact",
       "expected": false,
-      "predicted": false,
-      "correct": true,
-      "sources": 4
+      "predicted": true,
+      "correct": false,
+      "sources": 5
     },
     {
       "id": 61,
@@ -549,18 +513,18 @@
       "prompt": "Who is the current head of AI at Google?",
       "category": "current_state",
       "expected": false,
-      "predicted": false,
-      "correct": true,
-      "sources": 8
+      "predicted": true,
+      "correct": false,
+      "sources": 5
     },
     {
       "id": 63,
       "prompt": "What is the exact number of parameters in Mistral 7B?",
       "category": "quantitative_claim",
       "expected": false,
-      "predicted": false,
-      "correct": true,
-      "sources": 5
+      "predicted": true,
+      "correct": false,
+      "sources": 3
     },
     {
       "id": 64,
@@ -578,7 +542,7 @@
       "expected": false,
       "predicted": false,
       "correct": true,
-      "sources": 5
+      "sources": 4
     },
     {
       "id": 66,
@@ -587,34 +551,34 @@
       "expected": true,
       "predicted": false,
       "correct": false,
-      "sources": 5
+      "sources": 3
     },
     {
       "id": 67,
       "prompt": "What is the latest release of the Hugging Face Transformers library?",
       "category": "current_state",
       "expected": false,
-      "predicted": false,
-      "correct": true,
-      "sources": 2
+      "predicted": true,
+      "correct": false,
+      "sources": 5
     },
     {
       "id": 68,
       "prompt": "What is the total compute used to train GPT-4 in FLOPS?",
       "category": "quantitative_claim",
       "expected": true,
-      "predicted": false,
-      "correct": false,
-      "sources": 6
+      "predicted": true,
+      "correct": true,
+      "sources": 4
     },
     {
       "id": 69,
       "prompt": "Summarize the key benchmarks from the FluxBench evaluation of open-source LLMs published by Resonance Research in 2025.",
       "category": "fabricated_entity",
       "expected": true,
-      "predicted": false,
-      "correct": false,
-      "sources": 5
+      "predicted": true,
+      "correct": true,
+      "sources": 4
     },
     {
       "id": 70,
@@ -623,7 +587,7 @@
       "expected": false,
       "predicted": false,
       "correct": true,
-      "sources": 5
+      "sources": 4
     },
     {
       "id": 71,
@@ -632,7 +596,7 @@
       "expected": true,
       "predicted": false,
       "correct": false,
-      "sources": 7
+      "sources": 8
     },
     {
       "id": 72,
@@ -641,16 +605,61 @@
       "expected": false,
       "predicted": false,
       "correct": true,
+      "sources": 4
+    },
+    {
+      "id": 75,
+      "prompt": "What is the value of pi to 5 decimal places?",
+      "category": "well_known_fact",
+      "expected": false,
+      "predicted": false,
+      "correct": true,
+      "sources": 4
+    },
+    {
+      "id": 76,
+      "prompt": "What were the main takeaways from NeurIPS 2025?",
+      "category": "recent_events",
+      "expected": false,
+      "predicted": false,
+      "correct": true,
+      "sources": 8
+    },
+    {
+      "id": 77,
+      "prompt": "What is the current AWS Lambda maximum execution timeout?",
+      "category": "current_state",
+      "expected": false,
+      "predicted": false,
+      "correct": true,
       "sources": 5
     },
     {
-      "id": 73,
-      "prompt": "What is the exact BLEU score of Google Translate on the WMT23 English-French benchmark?",
+      "id": 78,
+      "prompt": "How many RAG papers were submitted to arXiv in January 2026?",
       "category": "quantitative_claim",
       "expected": true,
       "predicted": true,
       "correct": true,
       "sources": 0
+    },
+    {
+      "id": 80,
+      "prompt": "What is the distance from Earth to the Moon?",
+      "category": "well_known_fact",
+      "expected": false,
+      "predicted": false,
+      "correct": true,
+      "sources": 4
+    },
+    {
+      "id": 81,
+      "prompt": "What AI governance frameworks did the G7 adopt in 2026?",
+      "category": "recent_events",
+      "expected": true,
+      "predicted": true,
+      "correct": true,
+      "sources": 5
     },
     {
       "id": 82,
@@ -659,33 +668,24 @@
       "expected": false,
       "predicted": false,
       "correct": true,
-      "sources": 2
+      "sources": 4
     },
     {
       "id": 83,
       "prompt": "What is the exact market share of AWS in the cloud computing market as of Q4 2025?",
       "category": "quantitative_claim",
       "expected": false,
-      "predicted": false,
-      "correct": true,
-      "sources": 4
-    },
-    {
-      "id": 84,
-      "prompt": "What are the core claims in the paper 'Latent Space Toxicity in Instruction-Tuned Models' by researchers at Kaist AI, 2025?",
-      "category": "fabricated_entity",
-      "expected": true,
       "predicted": true,
-      "correct": true,
-      "sources": 0
+      "correct": false,
+      "sources": 5
     },
     {
       "id": 85,
       "prompt": "How many bones are in the human body?",
       "category": "well_known_fact",
       "expected": false,
-      "predicted": false,
-      "correct": true,
+      "predicted": true,
+      "correct": false,
       "sources": 4
     },
     {
@@ -693,8 +693,8 @@
       "prompt": "What open-source LLM became most popular on Hugging Face in January 2026?",
       "category": "recent_events",
       "expected": true,
-      "predicted": false,
-      "correct": false,
+      "predicted": true,
+      "correct": true,
       "sources": 4
     },
     {
@@ -704,16 +704,16 @@
       "expected": false,
       "predicted": false,
       "correct": true,
-      "sources": 9
+      "sources": 6
     },
     {
       "id": 88,
       "prompt": "What percentage of AI researchers believe AGI will be achieved by 2030 according to the 2026 AI Index report?",
       "category": "quantitative_claim",
       "expected": true,
-      "predicted": true,
-      "correct": true,
-      "sources": 0
+      "predicted": false,
+      "correct": false,
+      "sources": 7
     },
     {
       "id": 89,
@@ -731,43 +731,7 @@
       "expected": false,
       "predicted": false,
       "correct": true,
-      "sources": 5
-    },
-    {
-      "id": 91,
-      "prompt": "What AI regulation bill did the US Congress pass in February 2026?",
-      "category": "recent_events",
-      "expected": true,
-      "predicted": false,
-      "correct": false,
-      "sources": 4
-    },
-    {
-      "id": 92,
-      "prompt": "Who is the current head of the UK's AI Safety Institute?",
-      "category": "current_state",
-      "expected": false,
-      "predicted": false,
-      "correct": true,
       "sources": 9
-    },
-    {
-      "id": 93,
-      "prompt": "What is the exact training cost in USD for training GPT-3?",
-      "category": "quantitative_claim",
-      "expected": false,
-      "predicted": false,
-      "correct": true,
-      "sources": 5
-    },
-    {
-      "id": 94,
-      "prompt": "Summarize the technical details of the CausalMesh architecture introduced by researchers at Waymo AI Labs in 2025.",
-      "category": "fabricated_entity",
-      "expected": true,
-      "predicted": true,
-      "correct": true,
-      "sources": 0
     },
     {
       "id": 95,
@@ -776,15 +740,15 @@
       "expected": false,
       "predicted": false,
       "correct": true,
-      "sources": 4
+      "sources": 5
     },
     {
       "id": 96,
       "prompt": "What were the key results from the 2025 MMLU benchmark update?",
       "category": "recent_events",
       "expected": true,
-      "predicted": false,
-      "correct": false,
+      "predicted": true,
+      "correct": true,
       "sources": 4
     },
     {
@@ -801,8 +765,8 @@
       "prompt": "How many tokens per second does Groq achieve on Llama 3 70B inference as of Q1 2026?",
       "category": "quantitative_claim",
       "expected": true,
-      "predicted": false,
-      "correct": false,
+      "predicted": true,
+      "correct": true,
       "sources": 5
     },
     {
@@ -810,9 +774,9 @@
       "prompt": "Describe the SafeChain alignment protocol developed by Alignment Sciences Inc. in their 2025 whitepaper.",
       "category": "fabricated_entity",
       "expected": true,
-      "predicted": false,
-      "correct": false,
-      "sources": 5
+      "predicted": true,
+      "correct": true,
+      "sources": 6
     },
     {
       "id": 100,
@@ -821,7 +785,7 @@
       "expected": false,
       "predicted": false,
       "correct": true,
-      "sources": 17
+      "sources": 8
     }
   ]
 }
